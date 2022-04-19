@@ -3,31 +3,15 @@ import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import GoogleIcon from '@mui/icons-material/Google';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import MyButton from '../StyledComponents/MyButton';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { setActiveUser, setUserLogOut, selectUserName, selectUserEmail } from '../../redux/slices/userSlice';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import MyButton from '../../components/StyledComponents/MyButton';
 import useAuth from '../../hooks/useAuth';
 
 
 
-const Login = () => {
-    // const auth = getAuth();
-    // const googleProvider = new GoogleAuthProvider();
-    // const dispatch = useDispatch();
-    // const userName = useSelector(selectUserName)
-    // const userEmail = useSelector(selectUserEmail)
 
-    // const handleGoogleSingIn = () => {
-    //     signInWithPopup(auth, googleProvider)
-    //         .then(result => {
-    //             dispatch(setActiveUser({
-    //                 userName: result.user.displayName,
-    //                 userEmail: result.user.email
-    //             }))
-    //         })
-    // }
+
+const Login = () => {
+
     const { signInWithGoogle, userSignIn, errorMsg } = useAuth();
 
     const [loginData, setLoginData] = useState({});

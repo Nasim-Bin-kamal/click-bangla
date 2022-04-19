@@ -7,10 +7,12 @@ import Testimonial from '../../components/Testimonial/Testimonial';
 import TopBanner from '../../components/TopBanner/TopBanner';
 import TopProducts from '../../components/TopProducts/TopProducts';
 
+
 const Home = () => {
     return (
         <div>
             <Header />
+
             <TopBanner />
             <ProductTypes />
             <TopProducts />

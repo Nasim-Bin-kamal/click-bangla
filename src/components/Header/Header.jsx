@@ -18,6 +18,7 @@ import { useSelector } from 'react-redux';
 import './Header.module.css';
 import useAuth from '../../hooks/useAuth';
 
+
 const pages = [
     {
         pageTitle: 'Home',
@@ -86,6 +87,7 @@ const Header = () => {
         setAnchorElUser(null);
     };
 
+
     return (
         <AppBar position="fixed" sx={{ pb: 1, backgroundColor: '#E2F3DD', boxShadow: 0 }}>
             <Container>
@@ -97,7 +99,7 @@ const Header = () => {
                         component="div"
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                     >
-                        <img src="https://i.ibb.co/p1x5173/Screenshot-2021-12-21-011139-removebg-preview.png" alt="" width="80%" />
+                        <img src="https://i.ibb.co/NVZd7cf/click-bangla-dark.png" alt="" />
                     </Box>
 
 
@@ -143,6 +145,7 @@ const Header = () => {
 
                         </Menu>
                     </Box>
+
                     <Box
 
                         noWrap

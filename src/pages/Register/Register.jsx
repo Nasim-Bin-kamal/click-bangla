@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import GoogleIcon from '@mui/icons-material/Google';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import MyButton from '../StyledComponents/MyButton';
+import MyButton from '../../components/StyledComponents/MyButton';
 import useAuth from '../../hooks/useAuth';
 
 const Register = () => {

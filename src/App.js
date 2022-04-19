@@ -1,9 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
-import Login from './components/Login/Login';
-import NotFound from './components/NotFound/NotFound';
-import Register from './components/Register/Register';
 import About from './pages/About/About';
 import AddProducts from './pages/AddProducts/AddProducts';
 import AddReview from './pages/AddReview/AddReview';
@@ -20,6 +17,9 @@ import Checkout from './pages/Checkout/Checkout.jsx';
 import { ToastContainer } from 'react-toastify';
 import AuthProvider from './contexts/AuthProvider';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Login from './pages/Login/Login';
+import NotFound from './pages/NotFound/NotFound';
+import Register from './pages/Register/Register';
 
 
 

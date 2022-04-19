@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Grid, List, ListItem, makeStyles, TextField, Typography } from '@mui/material';
+import { Button, Container, Grid, List, ListItem, TextField, Typography } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -7,6 +7,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import SendIcon from '@mui/icons-material/Send';
 import { Box } from '@mui/system';
 import { NavLink } from 'react-router-dom';
+
 
 
 
@@ -22,6 +23,13 @@ const Footer = () => {
             <Container>
                 <Grid container spacing={2} sx={{ py: 5, color: '#FFF' }}>
                     <Grid item xs={12} md={4} lg={4}>
+                        <Box
+                            variant="h6"
+                            noWrap
+                            component="div"
+                        >
+                            <img src="https://i.ibb.co/NVZd7cf/click-bangla-dark.png" alt="" />
+                        </Box>
                         <Typography variant="h6">
                             Address
                         </Typography>
@@ -90,12 +98,13 @@ const Footer = () => {
                         <Button variant="contained" sx={{ backgroundColor: '#FFF8F5', color: '#0dbf57', py: 1 }} >
                             <SendIcon />
                         </Button>
+
                     </Grid>
                 </Grid>
             </Container>
             <Box>
-                <Typography variant='body1' sx={{ mx: 'auto', py: 3, px: 1, color: '#fff', fontWeight: 300, textAlign: 'center', backgroundColor: '#068c3e' }}>
-                    All Rights Reserved By Organic Store || 2021
+                <Typography variant='body2' sx={{ mx: 'auto', py: 3, px: 1, color: '#fff', fontWeight: 300, textAlign: 'center', backgroundColor: '#068c3e' }}>
+                    &copy; 2022 || All Rights Reserved By Click Bangla.com
                 </Typography>
             </Box>
         </div >
