@@ -29,7 +29,7 @@ const TopView = () => {
             <Container>
                 <Grid container sx={{ mx: 'auto', mt: 1, mb: 3 }} spacing={0}>
                     <Grid item sx={{ display: { xs: 'none', sm: 'none', md: 'flex', lg: 'flex' } }} md={3} lg={3} >
-                        <Paper>
+                        <Paper sx={{ width: '90%' }}>
                             <List
                                 sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
                                 component="nav"

@@ -39,7 +39,7 @@ const Login = () => {
             <Container sx={{ m: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Box sx={{ mx: 'auto', my: 10, p: 2, maxWidth: 380, backgroundColor: '#E2F3DD', borderRadius: 3 }}>
                     <Typography variant="h4" sx={{ m: 'auto', pb: 3, textAlign: 'center', color: '#1BAB42' }}>
-                        Login Please
+                        Login
                     </Typography>
                     {
                         errorMsg && <Alert sx={{ my: 3 }} severity="error" dismissible >{errorMsg}</Alert>
