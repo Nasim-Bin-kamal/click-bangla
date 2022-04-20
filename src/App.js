@@ -13,13 +13,13 @@ import ManageOrders from './pages/ManageOrders/ManageOrders';
 import ManageProducts from './pages/ManageProducts/ManageProducts';
 import MyOrders from './pages/MyOrders/MyOrders';
 import Shop from './pages/Shop/Shop';
-import Checkout from './pages/Checkout/Checkout.jsx';
 import { ToastContainer } from 'react-toastify';
 import AuthProvider from './contexts/AuthProvider';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
 import Register from './pages/Register/Register';
+import Checkout from './pages/Checkout/Checkout';
 
 
 

@@ -28,13 +28,17 @@ const AllProducts = () => {
     return (
         <div>
             <Container sx={{ my: 10 }}>
-                <Typography variant='h4' sx={{ pt: 3, textAlign: 'center' }}>
+                <Typography variant='h4' sx={{ pt: 2, textAlign: 'center' }}>
                     ALL PRODUCTS
                 </Typography>
 
                 <Grid container spacing={4} sx={{ my: 5 }}>
                     {
-                        allProducts?.map((product) => (<SingleProduct key={product?._id} product={product} />))
+                        allProducts?.map((product) => (
+                            <Grid item xs={12} md={4} lg={4}>
+                                <SingleProduct key={product?._id} product={product} />
+                            </Grid>
+                        ))
                     }
                 </Grid>
             </Container>

@@ -46,20 +46,7 @@ const Cart = () => {
                             </Typography>
 
                             <Grid container spacing={2}>
-                                {/* <Grid item xs={12} md={12} lg={9} sx={{ mx: 'auto', display: 'flex', justifyContent: 'center' }}>
-                                    <Paper sx={{
-                                        mx: 'auto',
-                                        p: 2,
-                                        display: 'flex',
-                                        justifyContent: 'space-between', alignItems: 'center',
-                                        backgroundColor: '#daf8dac2'
-                                    }}>
-                                        <Typography variant='h6' sx={{ mx: 'auto' }}>Product</Typography>
-                                        <Typography variant='h6'>Price</Typography>
-                                        <Typography variant='h6'>Quantity</Typography>
-                                        <Typography variant='h6'>Total</Typography>
-                                    </Paper>
-                                </Grid> */}
+
                                 {
                                     cart?.cartItems?.map((product) => (
                                         <Grid key={product?._id} item xs={12} md={12} lg={12} sx={{ mx: 'auto', display: 'flex', justifyContent: 'center' }}>
@@ -118,14 +105,15 @@ const Cart = () => {
                                     <DeleteForeverIcon />
                                 </Button>
                                 <Typography variant='h6'>
-                                    Subtotal: {cart?.cartTotalAmount} Tk
+                                    Total Price: {cart?.cartTotalAmount} Tk
                                 </Typography>
                                 <Link to="/checkout" style={{ textDecoration: 'none' }}>
                                     <MyButton sx={{ my: 3 }}>
-                                        Proceed To Checkout
+                                        Checkout Now
                                         <ArrowForwardIcon sx={{ ml: 1 }} />
                                     </MyButton>
                                 </Link>
+
                             </Box>
 
                         </div>

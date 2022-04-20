@@ -23,7 +23,7 @@ const TopSlider = () => {
             <Slider {...settings}>
                 {
                     sliderItems.map((item, i_id) => (
-                        < img src={item?.image} alt="" style={{ height: "100vh" }}></img>
+                        < img key={i_id} src={item?.image} alt="" style={{ height: "100vh" }}></img>
                     ))
                 }
             </Slider>

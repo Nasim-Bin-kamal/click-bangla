@@ -24,14 +24,14 @@ const ContactForm = () => {
     console.log(errors);
 
     return (
-        <div style={{ backgroundColor: '#FFF8F5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Container>
-                <Box sx={{ mx: 'auto', pt: 5 }}>
-                    <Typography variant="h4" sx={{ mx: 'auto', py: 10, textAlign: 'center', fontWeight: 500 }}>
+                <Box sx={{ mx: 'auto', }}>
+                    <Typography variant="h4" sx={{ mx: 'auto', py: 5, textAlign: 'center', fontWeight: 500 }}>
                         Contact With Us
                     </Typography>
                     <Box sx={{ mb: 10 }}>
-                        <form onSubmit={handleSubmit(onSubmit)} style={{ margin: 'auto', maxWidth: 550 }}>
+                        <form onSubmit={handleSubmit(onSubmit)} style={{ margin: 'auto', maxWidth: 800 }}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={6} lg={6}>
                                     <input style={style} type="text" placeholder="First name" {...register("firstName", { required: true, maxLength: 80 })} />

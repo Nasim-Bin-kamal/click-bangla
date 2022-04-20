@@ -1,3 +1,10 @@
-.menus:hover {
-  background-color: #15b915;
+
+.pageStyle:hover {
+  background-color: #15b915!important;
+  color: #fff;
+  
+}
+
+.menuStyle:hover{
+  background-color: #a7f5a7!important;
 }

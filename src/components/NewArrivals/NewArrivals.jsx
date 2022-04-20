@@ -29,13 +29,19 @@ const NewArrivals = () => {
         <div>
             <Container sx={{ mb: 10 }}>
                 <Typography variant='h4' sx={{ mx: 'auto', py: 5, textAlign: 'center', fontWeight: 500 }}>
-                    Top Seasonal products
+                    New Arrivals
                 </Typography>
 
                 <Grid container spacing={4}>
+
                     {
-                        allProducts?.slice(0, 9).map((product) => (<SingleProduct key={product?._id} product={product} />))
+                        allProducts?.slice(0, 8).map((product, _id) => (
+                            <Grid item xs={12} md={4} lg={3} key={product?._id}>
+                                <SingleProduct product={product} />
+                            </Grid>
+                        ))
                     }
+
                 </Grid>
 
             </Container>

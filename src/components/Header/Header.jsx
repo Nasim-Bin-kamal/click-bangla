@@ -15,8 +15,8 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge } from '@mui/material';
 import { useSelector } from 'react-redux';
-import './Header.module.css';
 import useAuth from '../../hooks/useAuth';
+import styles from './Header.module.css';
 
 
 const pages = [
@@ -134,8 +134,8 @@ const Header = () => {
                         >
 
 
-                            {pages.map((page, i) => (
-                                <NavLink style={{ textDecoration: 'none' }} key={i} to={page?.pageLink}>
+                            {pages.map((page, p_id) => (
+                                <NavLink style={{ textDecoration: 'none' }} key={p_id} to={page?.pageLink}>
                                     <MenuItem onClick={handleCloseNavMenu}>
                                         <Typography textAlign="center" sx={{ color: "black" }}>{page?.pageTitle}</Typography>
                                     </MenuItem>
@@ -152,29 +152,30 @@ const Header = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
-                        <img src="https://i.ibb.co/p1x5173/Screenshot-2021-12-21-011139-removebg-preview.png" alt="" width="80%" />
+                        <img src="https://i.ibb.co/NVZd7cf/click-bangla-dark.png" alt="" width="80%" />
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <NavLink style={{ textDecoration: 'none' }} key={Math.random()} to={page?.pageLink}>
                                 <Button
+                                    className={styles.pageStyle}
                                     key={Math.random()}
                                     onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'black', display: 'block' }}
+                                    sx={{ my: 2, mx: 1, color: '#000', display: 'block' }}
                                 >
                                     {page?.pageTitle}
                                 </Button>
                             </NavLink>
                         ))}
                     </Box>
-                    {
+                    {/* {
                         user?.email && (
                             <Box>
                                 <Typography variant='body2' sx={{ color: 'black' }}>{user?.displayName}</Typography>
                             </Box>
                         )
-                    }
+                    } */}
                     <Box sx={{ mr: 3 }}>
                         <NavLink to="/cart">
                             <Badge title="Cart page" color="secondary" badgeContent={cartItems?.length}>
@@ -205,14 +206,23 @@ const Header = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
+                            {
+                                user?.email && (
+                                    <Box>
+                                        <Typography variant='body2' sx={{ mx: 2, color: 'green' }}>{user?.displayName}</Typography>
+                                        <hr />
+                                    </Box>
+                                )
+                            }
+
                             {user?.email &&
                                 <MenuItem onClick={handleSignOut}>
-                                    <Typography textAlign="center" sx={{ color: "red" }}>LogOut</Typography>
+                                    <Typography textAlign="center" sx={{ color: "red" }}>Log Out</Typography>
                                 </MenuItem>
                             }
                             {settings.map((setting, i) => (
                                 <NavLink style={{ textDecoration: 'none' }} key={i} to={setting?.pageLink}>
-                                    <MenuItem onClick={handleCloseNavMenu}>
+                                    <MenuItem className={styles.menuStyle} onClick={handleCloseNavMenu}>
                                         <Typography textAlign="center" sx={{ color: "black" }}>{setting?.pageTitle}</Typography>
                                     </MenuItem>
                                 </NavLink>

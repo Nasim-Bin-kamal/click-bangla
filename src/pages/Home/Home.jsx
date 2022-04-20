@@ -1,4 +1,6 @@
 import React from 'react';
+import ContactForm from '../../components/ContactForm/ContactForm';
+import FlashSale from '../../components/FlashSale/FlashSale';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import NewArrivals from '../../components/NewArrivals/NewArrivals';
@@ -16,9 +18,11 @@ const Home = () => {
             <TopView />
             {/* <TopBanner /> */}
             <ProductTypes />
+            <FlashSale />
             <TopProducts />
             <NewArrivals />
             <Testimonial />
+            <ContactForm />
             <Footer />
         </div>
     );
