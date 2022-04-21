@@ -10,6 +10,15 @@ import MyButton from '../../components/StyledComponents/MyButton';
 import useAuth from '../../hooks/useAuth';
 import { getTotal } from '../../redux/slices/cartSlice';
 import { addOrder } from '../../redux/slices/orderSlice';
+import { clearCart } from '../../redux/slices/cartSlice';
+import { Link } from 'react-router-dom';
+
+import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
+import { toast } from "react-toastify";
+
+
+
 
 
 const useStyles = makeStyles({
@@ -38,10 +47,37 @@ const useStyles = makeStyles({
     }
 })
 
+
+
 const Checkout = () => {
 
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
+
+    const key = process.env.REACT_APP_STRIPE_KEY
+
+
+    async function handleToken(token, addresses) {
+        const response = await axios.post(
+            "http://localhost:5000/checkout",
+            { token, ...cart?.cartItems, subtotal }
+        );
+
+        console.log(response.status)
+
+        if (response.status === 200) {
+            dispatch(clearCart());
+            toast.success(`Payment Successful.Please Check Your Email`, {
+                position: "bottom-left",
+                autoClose: 2000,
+            });
+        } else {
+            toast.success(`Error!!Something Went Wrong`, {
+                position: "bottom-left",
+                autoClose: 2000,
+            });
+        }
+    }
 
     useEffect(() => {
         dispatch(getTotal())
@@ -57,6 +93,7 @@ const Checkout = () => {
         data.orderDate = new Date().toLocaleDateString();
         data.orderedProduct = { ...cart?.cartItems };
         dispatch(addOrder(data));
+        // dispatch(clearCart());
         console.log(data);
         reset();
 
@@ -66,7 +103,7 @@ const Checkout = () => {
 
     const shipping = cart?.cartTotalAmount > 200 ? 80 : 40;
     const tax = cart?.cartTotalAmount * 0.05;
-    const subtotal = cart?.cartTotalAmount + shipping + tax;
+    const subtotal = Math.ceil((cart?.cartTotalAmount + shipping + tax));
 
     return (
         <div>
@@ -76,6 +113,25 @@ const Checkout = () => {
                     To Complete Order Fill The desired Field
                 </Typography>
                 <Grid container spacing={2} sx={{ mb: 10 }}>
+
+                    <Grid item xs={12} md={12} lg={8}>
+                        <Box sx={{ mx: 'auto' }}>
+
+                            <form onSubmit={handleSubmit(onSubmit)} className={orderForm}>
+                                <Typography variant='h6' sx={{ mx: 'auto', mb: 3 }}>
+                                    Order Information
+                                </Typography>
+                                <input className={inputField} type="text" placeholder="Customer Name" {...register("customerName", { required: true, maxLength: 80 })} value={user?.displayName || ""} readOnly />
+                                <input className={inputField} type="email" placeholder="Email" {...register("email", { required: true })} value={user?.email || ""} readOnly />
+                                <input className={inputField} type="text" placeholder="Phone" {...register("phone", { required: true })} />
+                                <textarea className={inputField} placeholder="Address" rows="5" {...register("address", { required: true })} />
+                                <MyButton type="submit" >
+                                    Confirm Order
+                                </MyButton>
+                            </form>
+                        </Box>
+                    </Grid>
+
                     <Grid item xs={12} md={12} lg={4}>
                         <Box sx={{ mx: 'auto', p: 3, borderRadius: '10px', backgroundColor: '#E2F3DD' }}>
                             <Typography variant='h6' sx={{ mx: 'auto', mb: 2, display: 'flex', justifyContent: 'space-between' }}>
@@ -91,28 +147,31 @@ const Checkout = () => {
                             <Typography variant='h6' sx={{ mx: 'auto', mb: 2, color: '#1BAB42', display: 'flex', justifyContent: 'space-between' }}>
                                 <span>Subtotal:</span> <span>{subtotal} Tk</span>
                             </Typography>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={12} md={12} lg={8}>
-                        <Box sx={{ mx: 'auto' }}>
+                            <Box>
 
-                            <form onSubmit={handleSubmit(onSubmit)} className={orderForm}>
-                                <Typography variant='h6' sx={{ mx: 'auto', mb: 3 }}>
-                                    Shipping Address
-                                </Typography>
-                                <input className={inputField} type="text" placeholder="Customer Name" {...register("customerName", { required: true, maxLength: 80 })} value={user?.displayName || ""} readOnly />
-                                <input className={inputField} type="email" placeholder="Email" {...register("email", { required: true })} value={user?.email || ""} readOnly />
-                                <input className={inputField} type="text" placeholder="Phone" {...register("phone", { required: true })} />
-                                <textarea className={inputField} placeholder="Address" rows="5" {...register("address", { required: true })} />
-                                <MyButton type="submit">Comfirm Order</MyButton>
-                            </form>
+                                <StripeCheckout
+                                    name="Click Bangla Payment"
+                                    billingAddress
+                                    shippingAddress
+                                    description={`Your Total is ${subtotal} Tk`}
+                                    currency='BDT'
+                                    amount={subtotal * 100}
+                                    token={handleToken}
+                                    stripeKey={key}
+                                >
+                                    <MyButton sx={{ width: '100%' }}>Checkout</MyButton>
+                                </StripeCheckout>
+
+
+                            </Box>
                         </Box>
                     </Grid>
 
                 </Grid>
+
             </Container>
             <Footer />
-        </div>
+        </div >
     );
 };
 

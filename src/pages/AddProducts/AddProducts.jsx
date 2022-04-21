@@ -54,7 +54,11 @@ const AddProducts = () => {
                         <input className={inputField} type="text" placeholder="Product Name" {...register("name", { required: true, maxLength: 80 })} />
                         <input className={inputField} type="text" placeholder="Price" {...register("price", { required: true })} />
                         <input className={inputField} type="text" placeholder="Image Url" {...register("image", { required: true })} />
-
+                        <select className={inputField} {...register("category")}>
+                            <option >Select Category</option>
+                            <option value="vegetable">Vegetable</option>
+                            <option value="fruit">Fruit</option>
+                        </select>
                         <MyButton type="submit">Add Product</MyButton>
                     </form>
                 </Box>

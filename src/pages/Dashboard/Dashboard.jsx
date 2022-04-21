@@ -6,16 +6,14 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
+
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { MenuItem } from '@mui/material';
 
 const drawerWidth = 240;
@@ -57,7 +55,7 @@ function Dashboard(props) {
     const drawer = (
         <div>
             <Toolbar>
-                <img src="https://i.ibb.co/p1x5173/Screenshot-2021-12-21-011139-removebg-preview.png" alt="" width="100%" />
+                <img src="https://i.ibb.co/NVZd7cf/click-bangla-dark.png" alt="" width="100%" />
             </Toolbar>
             <Divider />
             <List>
@@ -78,14 +76,10 @@ function Dashboard(props) {
 
                 {adminPages.map((adminPage, index) => (
                     <ListItem button key={index}>
-                        {/* <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} /> */}
 
                         <Link to={adminPage?.pageLink} style={{ textDecoration: 'none' }}>
 
-                            <MenuItem>
+                            <MenuItem >
                                 <Typography textAlign="center" sx={{ color: "black" }}>{adminPage?.pageTitle}</Typography>
                             </MenuItem>
                         </Link>

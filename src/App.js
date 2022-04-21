@@ -20,6 +20,7 @@ import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
 import Register from './pages/Register/Register';
 import Checkout from './pages/Checkout/Checkout';
+import Payment from './pages/Payment/Payment';
 
 
 
@@ -52,6 +53,9 @@ function App() {
 
             <Route path="/checkout" element={<PrivateRoute>
               <Checkout />
+            </PrivateRoute>} />
+            <Route path="/payment" element={<PrivateRoute>
+              <Payment />
             </PrivateRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>

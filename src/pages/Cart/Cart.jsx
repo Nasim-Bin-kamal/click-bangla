@@ -41,8 +41,8 @@ const Cart = () => {
                         </Box>
                     ) : (
                         <div>
-                            <Typography variant='h4' sx={{ mx: 'auto', mt: 14, mb: 5, textAlign: 'center' }}>
-                                Shopping Cart : {cart?.cartItems?.length}
+                            <Typography variant='h4' sx={{ mx: 'auto', mt: 10, mb: 5, textAlign: 'center' }}>
+                                Your Cart : {cart?.cartItems?.length}
                             </Typography>
 
                             <Grid container spacing={2}>
@@ -55,7 +55,10 @@ const Cart = () => {
                                                 p: 2,
                                                 display: { sm: 'flex' },
                                                 justifyContent: 'space-between', alignItems: 'center',
-                                                backgroundColor: '#daf8dac2'
+                                                backgroundColor: '#daf8dac2',
+                                                width: '100%'
+
+
                                             }}>
                                                 <Box sx={{
                                                     width: { xs: '100%', sm: '15%', md: '10%', lg: '10%' }
@@ -109,7 +112,7 @@ const Cart = () => {
                                 </Typography>
                                 <Link to="/checkout" style={{ textDecoration: 'none' }}>
                                     <MyButton sx={{ my: 3 }}>
-                                        Checkout Now
+                                        Proceed To Checkout
                                         <ArrowForwardIcon sx={{ ml: 1 }} />
                                     </MyButton>
                                 </Link>

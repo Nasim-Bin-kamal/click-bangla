@@ -14,7 +14,7 @@ const ContactForm = () => {
         border: 'none',
         boxSizing: 'border-box',
         borderRadius: '5px',
-        backgroundColor: '#F4F4F4',
+        backgroundColor: '#E2F3DD',
         fontFamily: 'inherit',
         fontWeight: 500
     }

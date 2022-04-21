@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export const getProducts = createAsyncThunk(
     'products/getProducts',
     async () => {
-        const response = await fetch('https://safe-beach-17728.herokuapp.com/products')
+        const response = await fetch('http://localhost:5000/products')
             .then(res => res.json())
         return response;
 
@@ -18,7 +18,7 @@ export const getProducts = createAsyncThunk(
 export const getReviews = createAsyncThunk(
     'products/getReviews',
     async () => {
-        const response = await fetch('http://safe-beach-17728.herokuapp.com/reviews')
+        const response = await fetch('http://localhost:5000/reviews')
             .then(res => res.json())
         return response;
 
@@ -30,7 +30,7 @@ export const addProduct = createAsyncThunk(
     'products/addProduct',
     async (data, { rejectWithValue }) => {
         try {
-            const response = await axios.post('http://safe-beach-17728.herokuapp.com/products', data)
+            const response = await axios.post('http://localhost:5000/products', data)
             return response.data;
 
         } catch (error) {
@@ -43,7 +43,7 @@ export const addReview = createAsyncThunk(
     'products/addReview',
     async (data, { rejectWithValue }) => {
         try {
-            const response = await axios.post('http://safe-beach-17728.herokuapp.com/reviews', data)
+            const response = await axios.post('http://localhost:5000/reviews', data)
             return response.data;
 
         } catch (error) {
@@ -57,7 +57,7 @@ export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
     async (_id, { rejectWithValue }) => {
         try {
-            const response = await axios.delete(`http://safe-beach-17728.herokuapp.com/products/${_id}`);
+            const response = await axios.delete(`http://localhost:5000/products/${_id}`);
             // return response.data;
             console.log(response);
         } catch (error) {
