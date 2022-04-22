@@ -15,36 +15,43 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Link, Outlet } from 'react-router-dom';
 import { MenuItem } from '@mui/material';
+import useAuth from '../../hooks/useAuth';
+import { CgProfile } from "react-icons/cg";
 
 const drawerWidth = 240;
 
 const adminPages = [
     {
         pageTitle: 'Manage Product',
-        pageLink: '/dashboard/manageProducts'
+        pageLink: '/dashboard/manage-products'
     },
     {
         pageTitle: 'Add Products',
-        pageLink: '/dashboard/addProducts'
+        pageLink: '/dashboard/add-product'
     },
     {
         pageTitle: 'Manage Orders',
-        pageLink: '/dashboard/manageOrders'
+        pageLink: '/dashboard/manage-orders'
+    },
+    {
+        pageTitle: 'Add Admin',
+        pageLink: '/dashboard/add-admin'
     }
 ];
 
 const userPages = [
     {
         pageTitle: 'My Orders',
-        pageLink: '/dashboard/myOrders'
+        pageLink: '/dashboard/my-orders'
     },
     {
         pageTitle: 'Add Review',
-        pageLink: '/dashboard/addReview'
+        pageLink: '/dashboard/add-review'
     }
 ];
 
 function Dashboard(props) {
+    const { user, admin, userSingOut } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -56,6 +63,7 @@ function Dashboard(props) {
         <div>
             <Toolbar>
                 <img src="https://i.ibb.co/NVZd7cf/click-bangla-dark.png" alt="" width="100%" />
+
             </Toolbar>
             <Divider />
             <List>
@@ -74,35 +82,53 @@ function Dashboard(props) {
                     </Link>
                 </ListItem>
 
-                {adminPages.map((adminPage, index) => (
-                    <ListItem button key={index}>
+                {
+                    admin && <>
+                        {adminPages.map((adminPage, index) => (
+                            <ListItem button key={index}>
 
-                        <Link to={adminPage?.pageLink} style={{ textDecoration: 'none' }}>
+                                <Link to={adminPage?.pageLink} style={{ textDecoration: 'none' }}>
 
-                            <MenuItem >
-                                <Typography textAlign="center" sx={{ color: "black" }}>{adminPage?.pageTitle}</Typography>
-                            </MenuItem>
-                        </Link>
-                    </ListItem>
-                ))}
+                                    <MenuItem >
+                                        <Typography textAlign="center" sx={{ color: "black" }}>{adminPage?.pageTitle}</Typography>
+                                    </MenuItem>
+                                </Link>
+                            </ListItem>
+                        ))}
+                    </>
+                }
+
+
             </List>
             <Divider />
             <List>
-                {userPages?.map((userPage, index) => (
-                    <ListItem button key={index}>
-                        {/* <ListItemIcon>
+                {
+                    (user && !admin) && <>
+                        {userPages?.map((userPage, index) => (
+                            <ListItem button key={index}>
+                                {/* <ListItemIcon>
                             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                         </ListItemIcon>
                         <ListItemText primary={text} /> */}
 
-                        <Link to={userPage?.pageLink} style={{ textDecoration: 'none' }}>
+                                <Link to={userPage?.pageLink} style={{ textDecoration: 'none' }}>
 
-                            <MenuItem>
-                                <Typography textAlign="center" sx={{ color: "black" }}>{userPage?.pageTitle}</Typography>
-                            </MenuItem>
-                        </Link>
-                    </ListItem>
-                ))}
+                                    <MenuItem>
+                                        <Typography textAlign="center" sx={{ color: "black" }}>{userPage?.pageTitle}</Typography>
+                                    </MenuItem>
+                                </Link>
+                            </ListItem>
+                        ))}
+                    </>
+                }
+
+                <ListItem button onClick={userSingOut}>
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+                        <MenuItem >
+                            <Typography textAlign="center" sx={{ color: "red" }}>Log Out</Typography>
+                        </MenuItem>
+                    </Link>
+                </ListItem>
             </List>
 
         </div>
@@ -133,9 +159,13 @@ function Dashboard(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div" sx={{ color: '#1bab42' }}>
-                        Dashboard
-                    </Typography>
+                    <Box >
+
+                        <Typography variant="h6" noWrap component="div" sx={{ color: '#1bab42' }}>
+                            Dashboard
+                        </Typography>
+
+                    </Box>
                 </Toolbar>
             </AppBar>
             <Box

@@ -128,18 +128,6 @@ const productSlice = createSlice({
         })
 
 
-
-        // [getProducts.pending]: (state) => {
-        //     state.isLoading = true;
-        // },
-        //     [getProducts.fulfilled]: (state, action) => {
-        //         state.allProducts = action.payload;
-        //         state.isLoading = false;
-        //     },
-        //         [getProducts.rejected]: (state) => {
-        //             state.isLoading = false;
-        //         }
-
     },
 
 })

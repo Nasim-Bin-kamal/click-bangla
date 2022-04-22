@@ -1,9 +1,7 @@
+import { Box, CircularProgress } from '@mui/material';
 import React from 'react';
-import { Spinner } from 'react-bootstrap';
 import { Navigate, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-
-
 
 
 const AdminRoute = ({ children, ...rest }) => {
@@ -11,13 +9,15 @@ const AdminRoute = ({ children, ...rest }) => {
     const location = useLocation();
 
     if (isLoading) {
+
         return (
-            <div className="d-flex justify-content-center my-5 loading">
-                <Spinner className="" animation="grow" variant="danger" />
-                <Spinner className="" animation="grow" variant="warning" />
-                <Spinner className="" animation="grow" variant="success" />
-            </div>
+            <Box sx={{ my: 15, display: 'flex', justifyContent: 'center' }}>
+                <CircularProgress color="secondary" />
+                <CircularProgress color="success" />
+                <CircularProgress color="inherit" />
+            </Box>
         )
+
     }
 
     // if (user?.email && admin) {

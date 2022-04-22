@@ -91,7 +91,7 @@ const Checkout = () => {
         data.orderStatus = 'Pending';
         data.totalAmount = subtotal;
         data.orderDate = new Date().toLocaleDateString();
-        data.orderedProduct = { ...cart?.cartItems };
+        data.orderedProduct = [...cart?.cartItems];
         dispatch(addOrder(data));
         // dispatch(clearCart());
         console.log(data);

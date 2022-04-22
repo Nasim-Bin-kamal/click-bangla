@@ -21,6 +21,8 @@ import NotFound from './pages/NotFound/NotFound';
 import Register from './pages/Register/Register';
 import Checkout from './pages/Checkout/Checkout';
 import Payment from './pages/Payment/Payment';
+import AddAdmin from './pages/AddAdmin/AddAdmin';
+import AdminRoute from './components/AdminRoute/AdminRoute';
 
 
 
@@ -44,11 +46,20 @@ function App() {
               <Dashboard />
             </PrivateRoute>}>
               <Route path="" element={<DashboardHome />} />
-              <Route path="manageOrders" element={<ManageOrders />} />
-              <Route path="addProducts" element={<AddProducts />} />
-              <Route path="manageProducts" element={<ManageProducts />} />
-              <Route path="myOrders" element={<MyOrders />} />
-              <Route path="addReview" element={<AddReview />} />
+
+              <Route path="manage-orders" element={<AdminRoute>
+                <ManageOrders />
+              </AdminRoute>} />
+              <Route path="add-product" element={<AddProducts />} />
+              <Route path="manage-products" element={<AdminRoute>
+                <ManageProducts />
+              </AdminRoute>} />
+              {/* <Route path="manage-products/update/:id" element={<UpdateProduct />} /> */}
+              <Route path="my-orders" element={<MyOrders />} />
+              <Route path="add-review" element={<AddReview />} />
+              <Route path="add-admin" element={<AdminRoute>
+                <AddAdmin />
+              </AdminRoute>} />
             </Route>
 
             <Route path="/checkout" element={<PrivateRoute>
