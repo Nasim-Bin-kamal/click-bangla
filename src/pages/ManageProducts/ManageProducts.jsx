@@ -19,7 +19,11 @@ const ManageProducts = () => {
 
 
     const handleDeleteProduct = (id) => {
-        dispatch(deleteProduct(id));
+        const proceed = window.confirm('Are you want to delete this product');
+        if (proceed) {
+            dispatch(deleteProduct(id));
+        }
+
     }
 
 

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export const getOrders = createAsyncThunk(
     'orders/getOrders',
     async () => {
-        const response = await fetch('http://localhost:5000/orders')
+        const response = await fetch('https://polar-plains-17916.herokuapp.com/orders')
             .then(res => res.json())
         return response;
 
@@ -19,7 +19,7 @@ export const addOrder = createAsyncThunk(
     'orders/addOrder',
     async (data, { rejectWithValue }) => {
         try {
-            const response = await axios.post('http://localhost:5000/orders', data)
+            const response = await axios.post('https://polar-plains-17916.herokuapp.com/orders', data)
             return response.data;
 
         } catch (error) {
@@ -34,7 +34,7 @@ export const deleteOrder = createAsyncThunk(
     "orders/deleteOrder",
     async (_id, { rejectWithValue }) => {
         try {
-            const response = await axios.delete(`http://localhost:5000/orders/${_id}`);
+            const response = await axios.delete(`https://polar-plains-17916.herokuapp.com/orders/${_id}`);
             // return response.data;
             console.log(response);
 

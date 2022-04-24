@@ -10,7 +10,7 @@ const MyOrders = () => {
     const { user } = useAuth();
     const [orderedProducts, setOrderedProducts] = useState([]);
     useEffect(() => {
-        const url = `http://localhost:5000/orders?email=${user?.email}`;
+        const url = `https://polar-plains-17916.herokuapp.com/orders?email=${user?.email}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setOrderedProducts(data));
@@ -25,7 +25,7 @@ const MyOrders = () => {
     }
 
     const handleCancelOrder = (id) => {
-        const url = `http://localhost:5000/orders/${id}`;
+        const url = `https://polar-plains-17916.herokuapp.com/orders/${id}`;
         const proceed = window.confirm('Are you want to cancel this order');
         if (proceed) {
             axios.delete(url)

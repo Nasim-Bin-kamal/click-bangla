@@ -166,7 +166,7 @@ const useFirebase = () => {
     //save user information in database
     const saveUserData = (email, displayName, method) => {
         const user = { email, displayName }; //if property name and value is same ,it can write in this way;
-        fetch('http://localhost:5000/users', {
+        fetch('https://polar-plains-17916.herokuapp.com/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -180,7 +180,7 @@ const useFirebase = () => {
 
     //check admin info
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://polar-plains-17916.herokuapp.com/users/${user?.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin));
     }, [user?.email]);

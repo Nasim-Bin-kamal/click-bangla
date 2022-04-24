@@ -59,7 +59,7 @@ const Checkout = () => {
 
     async function handleToken(token, addresses) {
         const response = await axios.post(
-            "http://localhost:5000/checkout",
+            "https://polar-plains-17916.herokuapp.com/checkout",
             { token, ...cart?.cartItems, subtotal }
         );
 
@@ -69,7 +69,7 @@ const Checkout = () => {
             dispatch(clearCart());
             toast.success(`Payment Successful.Please Check Your Email`, {
                 position: "bottom-left",
-                autoClose: 2000,
+                autoClose: 1000,
             });
         } else {
             toast.success(`Error!!Something Went Wrong`, {
