@@ -88,7 +88,12 @@ const Header = () => {
   return (
     <AppBar
       position="sticky"
-      sx={{ pb: 1, backgroundColor: "#E2F3DD", boxShadow: 0 }}
+      sx={{
+        pb: 1,
+        backgroundColor: "#E2F3DD",
+        boxShadow: 0,
+        overflow: "hidden",
+      }}
     >
       <Container>
         <Toolbar disableGutters>
