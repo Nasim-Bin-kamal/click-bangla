@@ -5,13 +5,15 @@ import React, { useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts, deleteProduct } from '../../redux/slices/productSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const ManageProducts = () => {
     const dispatch = useDispatch();
     const { allProducts } = useSelector(state => state?.products)
-    // console.log(allProducts);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getProducts());
@@ -77,7 +79,7 @@ const ManageProducts = () => {
                                             <Typography variant='body'>{product?.price} Tk</Typography>
                                         </Grid>
                                         <Grid item xs={12} md={4} lg={4} sx={{ py: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                            <Button variant='outlined' color='secondary' sx={{ mr: 1 }}>Update</Button>
+                                            <Button onClick={() => navigate(`update-product/${product?._id}`)} variant='outlined' color='secondary' sx={{ mr: 1 }}>Update</Button>
                                             <Button onClick={() => handleDeleteProduct(product?._id)} variant='outlined' color='error'>Delete</Button>
                                         </Grid>
                                     </Grid>

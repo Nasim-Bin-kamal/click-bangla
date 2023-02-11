@@ -16,13 +16,13 @@ import Typography from '@mui/material/Typography';
 import { Link, Outlet } from 'react-router-dom';
 import { MenuItem } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
-import { CgProfile } from "react-icons/cg";
+
 
 const drawerWidth = 240;
 
 const adminPages = [
     {
-        pageTitle: 'Manage Product',
+        pageTitle: 'Manage Products',
         pageLink: '/dashboard/manage-products'
     },
     {
@@ -106,10 +106,7 @@ function Dashboard(props) {
                     (user && !admin) && <>
                         {userPages?.map((userPage, index) => (
                             <ListItem button key={index}>
-                                {/* <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} /> */}
+
 
                                 <Link to={userPage?.pageLink} style={{ textDecoration: 'none' }}>
 

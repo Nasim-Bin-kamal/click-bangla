@@ -20,9 +20,9 @@ import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
 import Register from './pages/Register/Register';
 import Checkout from './pages/Checkout/Checkout';
-import Payment from './pages/Payment/Payment';
 import AddAdmin from './pages/AddAdmin/AddAdmin';
 import AdminRoute from './components/AdminRoute/AdminRoute';
+import UpdateProduct from './pages/UpdateProduct/UpdateProduct';
 
 
 
@@ -54,7 +54,7 @@ function App() {
               <Route path="manage-products" element={<AdminRoute>
                 <ManageProducts />
               </AdminRoute>} />
-              {/* <Route path="manage-products/update/:id" element={<UpdateProduct />} /> */}
+              <Route path="manage-products/update-product/:id" element={<UpdateProduct />} />
               <Route path="my-orders" element={<MyOrders />} />
               <Route path="add-review" element={<AddReview />} />
               <Route path="add-admin" element={<AdminRoute>
@@ -65,9 +65,7 @@ function App() {
             <Route path="/checkout" element={<PrivateRoute>
               <Checkout />
             </PrivateRoute>} />
-            <Route path="/payment" element={<PrivateRoute>
-              <Payment />
-            </PrivateRoute>} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

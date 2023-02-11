@@ -1,97 +1,88 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-
-export const getOrders = createAsyncThunk(
-    'orders/getOrders',
-    async () => {
-        const response = await fetch('https://polar-plains-17916.herokuapp.com/orders')
-            .then(res => res.json())
-        return response;
-
-    }
-
-)
-
+export const getOrders = createAsyncThunk("orders/getOrders", async () => {
+  const response = await fetch(
+    "https://click-bangla-server.vercel.app/orders"
+  ).then((res) => res.json());
+  return response;
+});
 
 export const addOrder = createAsyncThunk(
-    'orders/addOrder',
-    async (data, { rejectWithValue }) => {
-        try {
-            const response = await axios.post('https://polar-plains-17916.herokuapp.com/orders', data)
-            return response.data;
-
-        } catch (error) {
-            console.log(error);
-            return rejectWithValue(error.response.data);
-        }
+  "orders/addOrder",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "https://click-bangla-server.vercel.app/orders",
+        data
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
     }
-
+  }
 );
 
 export const deleteOrder = createAsyncThunk(
-    "orders/deleteOrder",
-    async (_id, { rejectWithValue }) => {
-        try {
-            const response = await axios.delete(`https://polar-plains-17916.herokuapp.com/orders/${_id}`);
-            // return response.data;
-            console.log(response);
-
-        } catch (error) {
-            console.log(error);
-            return rejectWithValue(error.response?.data);
-        }
+  "orders/deleteOrder",
+  async (_id, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(
+        `https://click-bangla-server.vercel.app/orders/${_id}`
+      );
+      // return response.data;
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response?.data);
     }
+  }
 );
 
-
-
 const orderSlice = createSlice({
-    name: 'orders',
-    initialState: {
-        orders: [],
-        isLoading: false
-    },
-    reducers: {
+  name: "orders",
+  initialState: {
+    orders: [],
+    isLoading: false,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    //get orders
+    builder.addCase(getOrders.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getOrders.fulfilled, (state, action) => {
+      state.orders = action.payload;
+      state.isLoading = false;
+    });
+    builder.addCase(getOrders.rejected, (state) => {
+      state.isLoading = false;
+    });
 
-    },
-    extraReducers: (builder) => {
+    //add order
 
-        //get orders
-        builder.addCase(getOrders.pending, (state) => {
-            state.isLoading = true;
-        })
-        builder.addCase(getOrders.fulfilled, (state, action) => {
-            state.orders = action.payload;
-            state.isLoading = false;
-        })
-        builder.addCase(getOrders.rejected, (state) => {
-            state.isLoading = false;
-        })
+    builder.addCase(addOrder.fulfilled, (state, action) => {
+      state.orders.push(action.payload);
+      toast.success(`Order Successful`, {
+        position: "bottom-left",
+        autoClose: 2000,
+      });
+    });
 
-        //add order
+    //delete order
 
-        builder.addCase(addOrder.fulfilled, (state, action) => {
-            state.orders.push(action.payload);
-            toast.success(`Order Successful`, {
-                position: "bottom-left",
-                autoClose: 2000,
-            });
-        })
-
-        //delete order
-
-        builder.addCase(deleteOrder.fulfilled, (state, action) => {
-            state.orders = state.orders.filter(
-                (order) => order._id !== action.payload
-            );
-            toast.error(`Deleted Order successfully`, {
-                position: "bottom-left",
-                autoClose: 2000,
-            });
-        })
-    }
-})
+    builder.addCase(deleteOrder.fulfilled, (state, action) => {
+      state.orders = state.orders.filter(
+        (order) => order._id !== action.payload
+      );
+      toast.error(`Deleted Order successfully`, {
+        position: "bottom-left",
+        autoClose: 2000,
+      });
+    });
+  },
+});
 
 export default orderSlice.reducer;
